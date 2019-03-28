@@ -14,7 +14,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{C2E9BB8B-0B55-420F-A5B9-B181BBC81289}
+AppId={{EF536888-919D-47C0-8675-2F7AFA52EE27}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}
@@ -128,9 +128,7 @@ Name: contentpack; Description: Content pack; Types: custom full
 [Code]
 procedure InitializeWizard();
 begin
-        if IsComponentSelected('contentpack') then
-            
-        idpAddFile('http://archives.rigsofrods.net/contentpacks/pack_highquality04.zip', ExpandConstant('{tmp}\pack_highquality04.zip'));
+         idpAddFileComp('http://archives.rigsofrods.net/contentpacks/pack_highquality04.zip', ExpandConstant('{tmp}\pack_highquality04.zip'), 'contentpack');
        
         idpDownloadAfter(wpReady);
 end;
