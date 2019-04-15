@@ -1,3 +1,7 @@
+shared_params pssm_params  
+{  
+    shared_param_named pssmSplitPoints float4  
+}  
 
 vertex_program PSSM/shadow_caster_vs cg
 {

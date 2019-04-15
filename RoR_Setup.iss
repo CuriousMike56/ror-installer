@@ -75,39 +75,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; Main files
-Source: "GameFiles_0.4.8.0\Caelum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\cg.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\Codec_FreeImage.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\MyGUIEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreBites.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreHLMS.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreMain.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreMeshLodGenerator.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreMeshUpgrader.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreOverlay.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgrePaging.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreProperty.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreRTShaderSystem.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreTerrain.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreVolume.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OgreXMLConverter.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\OIS.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\Plugin_BSPSceneManager.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\Plugin_CgProgramManager.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\Plugin_OctreeSceneManager.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\Plugin_OctreeZone.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\Plugin_ParticleFX.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\Plugin_PCZSceneManager.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\plugins.cfg"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\RenderSystem_Direct3D9.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\RenderSystem_Direct3D11.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\RenderSystem_GL.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\RoR.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "GameFiles_0.4.8.0\VRMLConverter.exe"; DestDir: "{app}"; Flags: ignoreversion
-; Folders
-Source: "GameFiles_0.4.8.0\languages\*"; DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "GameFiles_0.4.8.0\resources\*"; DestDir: "{app}\resources"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "GameFiles_0.4.8.0\content\*"; DestDir: "{app}\resources"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "GameFiles_0.4.8.0\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; DirectX
 Source: "Dependencies\DirectX\*"; DestDir: "{tmp}"; Flags: nocompression createallsubdirs recursesubdirs deleteafterinstall overwritereadonly ignoreversion uninsremovereadonly
 ; VS redist
