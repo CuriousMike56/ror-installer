@@ -2,9 +2,12 @@
 
 Thanks for installing Rigs of Rods!
 
+-----------------------------------
+
 By default, Rigs of Rods only comes with a very small selection of vehicles and terrains. 
-For the best experience download some mods from the Repository: https://forum.rigsofrods.org/downloads.php 
-The Showroom Subforum (https://forum.rigsofrods.org/content/) and the Archives (http://archives.rigsofrods.net/) contain additional content not found in the Repository.
+For the best experience download some mods from the Repository: https://forum.rigsofrods.org/resources/
+The Showroom Subforum (https://forum.rigsofrods.org/#repository.11) and the Archives (http://archives.rigsofrods.net/) contain additional content not found in the Repository.
+If you downloaded one (or more) content packs, please note that the licenses of the included content may be different from the license used by Rigs of Rods.
 
 -----------------------------------
 
@@ -21,8 +24,8 @@ Other useful links:
 
 Website - https://rigsofrods.org/
 Forum - https://forum.rigsofrods.org/
-Repository - https://forum.rigsofrods.org/downloads.php
-Documentation - http://docs.rigsofrods.org/
+Repository - https://forum.rigsofrods.org/resources/
+Documentation - https://docs.rigsofrods.org/
 GitHub - https://github.com/RigsOfRods/rigs-of-rods
 
 -----------------------------------
