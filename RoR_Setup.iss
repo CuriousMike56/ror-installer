@@ -22,16 +22,21 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf64}\Rigs of Rods
+DefaultDirName={pf}\Rigs of Rods
 DefaultGroupName=Rigs of Rods
 DisableProgramGroupPage=yes
 LicenseFile=TextFiles\GNU General Public License v3.0.txt
 InfoAfterFile=TextFiles\AfterInstall.txt
 OutputDir=Build
-OutputBaseFilename=RoR_0.4.8.0_Setup
+OutputBaseFilename=RoR_0.4.8RC4_Setup
 SetupIconFile=Icons\ror.ico
 Compression=lzma
 SolidCompression=yes
+; "ArchitecturesInstallIn64BitMode=x64" requests that the install be
+; done in "64-bit mode" on x64, meaning it should use the native
+; 64-bit Program Files directory and the 64-bit view of the registry.
+; On all other architectures it will install in "32-bit mode".
+ArchitecturesInstallIn64BitMode=x64
 DisableWelcomePage=no
 ; Custom images
 ; 64x64
@@ -74,8 +79,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 ;Name: "{userdocs}\Rigs of Rods 0.4\mods"
 
 [Files]
+; Folders
+Source: "GameFiles_0.4.8.0\languages\*"; DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "GameFiles_0.4.8.0\resources\*"; DestDir: "{app}\resources"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "GameFiles_0.4.8.0\content\*"; DestDir: "{app}\content"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; Main files
-Source: "GameFiles_0.4.8.0\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "GameFiles_0.4.8.0\x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: Is64BitInstallMode
+Source: "GameFiles_0.4.8.0\x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: not Is64BitInstallMode
 ; DirectX
 Source: "Dependencies\DirectX\*"; DestDir: "{tmp}"; Flags: nocompression createallsubdirs recursesubdirs deleteafterinstall overwritereadonly ignoreversion uninsremovereadonly
 ; VS redist
@@ -117,7 +127,8 @@ Filename: "{tmp}\7za.exe"; Components: contentpack; Parameters: "x -aos -o""{use
 ;DirectX
 Filename: "{tmp}\dxwebsetup.exe"; WorkingDir: "{tmp}"; Parameters: "/Q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing DirectX..."
 ;VS redist
-Filename: "{tmp}\vc_redist.x64.exe"; WorkingDir: "{tmp}"; Parameters: "/q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing Visual Studio Redistributable..."
+Filename: "{tmp}\vc_redist.x64.exe"; WorkingDir: "{tmp}"; Parameters: "/q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing Visual Studio Redistributable (x64)..."; Check: Is64BitInstallMode
+Filename: "{tmp}\vc_redist.x86.exe"; WorkingDir: "{tmp}"; Parameters: "/q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing Visual Studio Redistributable (x86)..."; Check: not Is64BitInstallMode
 ; "Launch Rigs of Rods" button after install
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
