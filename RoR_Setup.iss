@@ -1,5 +1,5 @@
 ; Rigs of Rods 0.4.8.0 Setup
-; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
+; Created by Michael (CuriousMike)
 
 ; Download Plugin for content pack (https://mitrichsoftware.wordpress.com/inno-setup-tools/inno-download-plugin/)
 #include <idp.iss>
@@ -92,8 +92,8 @@ Source: "Dependencies\DirectX\*"; DestDir: "{tmp}"; Flags: nocompression createa
 Source: "Dependencies\VSRedist\*"; DestDir: "{tmp}"; Flags: nocompression createallsubdirs recursesubdirs deleteafterinstall overwritereadonly ignoreversion uninsremovereadonly
 ; Unzip tool
 Source: "Dependencies\7za.exe"; DestDir: "{tmp}"; Flags: nocompression createallsubdirs recursesubdirs deleteafterinstall overwritereadonly ignoreversion uninsremovereadonly
-; Content pack, optional
-Source: "{tmp}\pack_highquality04.zip"; DestDir: "{tmp}"; Components: contentpack; Flags: external deleteafterinstall; ExternalSize: 991267044
+; Content packs, optional
+Source: "{tmp}\ContentPack_HeavyEquipment.zip"; DestDir: "{tmp}"; Components: contentpack_trucks; Flags: external deleteafterinstall; ExternalSize: 889001831
  
 [Types]
 Name: full; Description: Full Installation
@@ -101,12 +101,12 @@ Name: minimal; Description: Minimal Installation
 Name: custom; Description: Custom Installation; Flags: iscustom
 
 [Components]
-Name: contentpack; Description: Content pack; Types: custom full
+Name: contentpack_trucks; Description: Content Pack - Trucks & Heavy Equipment; Types: custom full
 
 [Code]
 procedure InitializeWizard();
 begin
-         idpAddFileComp('http://archives.rigsofrods.net/contentpacks/pack_highquality04.zip', ExpandConstant('{tmp}\pack_highquality04.zip'), 'contentpack');
+        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-trucks-heavy-equipment.490/download', ExpandConstant('{tmp}\ContentPack_HeavyEquipment.zip'), 'contentpack_trucks');
        
         idpDownloadAfter(wpReady);
 end;
@@ -119,11 +119,8 @@ Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\Rigs of Rods"; Filename: "{app}\RoR.exe"; Tasks: desktopicon
 
 [Run]
-; Create Documents directory structure
-; Old installer only created the folder structure if the user installed the default content
-;Filename: "{tmp}\7za.exe"; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4"" ""{app}\skeleton.zip"""; Flags: runhidden; StatusMsg: "Creating Documents directory structure..."
 ;Content pack
-Filename: "{tmp}\7za.exe"; Components: contentpack; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\pack_highquality04.zip"""; Flags: runhidden; StatusMsg: "Installing Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_trucks; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_HeavyEquipment.zip"""; Flags: runhidden; StatusMsg: "Installing Trucks & Heavy Equipment Content Pack..."
 ;DirectX
 Filename: "{tmp}\dxwebsetup.exe"; WorkingDir: "{tmp}"; Parameters: "/Q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing DirectX..."
 ;VS redist
