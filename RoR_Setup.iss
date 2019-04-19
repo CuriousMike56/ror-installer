@@ -93,7 +93,12 @@ Source: "Dependencies\VSRedist\*"; DestDir: "{tmp}"; Flags: nocompression create
 ; Unzip tool
 Source: "Dependencies\7za.exe"; DestDir: "{tmp}"; Flags: nocompression createallsubdirs recursesubdirs deleteafterinstall overwritereadonly ignoreversion uninsremovereadonly
 ; Content packs, optional
-Source: "{tmp}\ContentPack_HeavyEquipment.zip"; DestDir: "{tmp}"; Components: contentpack_trucks; Flags: external deleteafterinstall; ExternalSize: 889001831
+Source: "{tmp}\ContentPack_HeavyEquipment.zip"; DestDir: "{tmp}"; Components: contentpack_trucks; Flags: external deleteafterinstall; ExternalSize: 904536285
+Source: "{tmp}\ContentPack_LightVehicles.zip"; DestDir: "{tmp}"; Components: contentpack_cars; Flags: external deleteafterinstall; ExternalSize: 612010794
+Source: "{tmp}\ContentPack_Loads.zip"; DestDir: "{tmp}"; Components: contentpack_loads; Flags: external deleteafterinstall; ExternalSize: 308874810
+Source: "{tmp}\ContentPack_Trains.zip"; DestDir: "{tmp}"; Components: contentpack_trains; Flags: external deleteafterinstall; ExternalSize: 46559872
+Source: "{tmp}\ContentPack_AirSea.zip"; DestDir: "{tmp}"; Components: contentpack_airsea; Flags: external deleteafterinstall; ExternalSize: 86989164
+Source: "{tmp}\ContentPack_Terrains.zip"; DestDir: "{tmp}"; Components: contentpack_terrains; Flags: external deleteafterinstall; ExternalSize: 732822023
  
 [Types]
 Name: full; Description: Full Installation
@@ -102,11 +107,21 @@ Name: custom; Description: Custom Installation; Flags: iscustom
 
 [Components]
 Name: contentpack_trucks; Description: Content Pack - Trucks & Heavy Equipment; Types: custom full
+Name: contentpack_cars; Description: Content Pack - Cars & Light Vehicles; Types: custom full
+Name: contentpack_loads; Description: Content Pack - Trailers & Loads; Types: custom full
+Name: contentpack_airsea; Description: Content Pack - Air & Sea; Types: custom full
+Name: contentpack_trains; Description: Content Pack - Trains; Types: custom full
+Name: contentpack_terrains; Description: Content Pack - Terrains; Types: custom full
 
 [Code]
 procedure InitializeWizard();
 begin
         idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-trucks-heavy-equipment.490/download', ExpandConstant('{tmp}\ContentPack_HeavyEquipment.zip'), 'contentpack_trucks');
+        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-cars-light-vehicles.491/download', ExpandConstant('{tmp}\ContentPack_LightVehicles.zip'), 'contentpack_cars');
+        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-trailers-loads.492/download', ExpandConstant('{tmp}\ContentPack_Loads.zip'), 'contentpack_loads');
+        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-air-sea.495/download', ExpandConstant('{tmp}\ContentPack_AirSea.zip'), 'contentpack_airsea');
+        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-trains.494/download', ExpandConstant('{tmp}\ContentPack_Trains.zip'), 'contentpack_trains');
+        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-terrains.496/download', ExpandConstant('{tmp}\ContentPack_Terrains.zip'), 'contentpack_terrains');
        
         idpDownloadAfter(wpReady);
 end;
@@ -119,8 +134,13 @@ Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\Rigs of Rods"; Filename: "{app}\RoR.exe"; Tasks: desktopicon
 
 [Run]
-;Content pack
+;Content packs
 Filename: "{tmp}\7za.exe"; Components: contentpack_trucks; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_HeavyEquipment.zip"""; Flags: runhidden; StatusMsg: "Installing Trucks & Heavy Equipment Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_cars; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_LightVehicles.zip"""; Flags: runhidden; StatusMsg: "Installing Cars & Light Vehicles Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_loads; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Loads.zip"""; Flags: runhidden; StatusMsg: "Installing Trailers & Loads Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_airsea; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_AirSea.zip"""; Flags: runhidden; StatusMsg: "Installing Air & Sea Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_trains; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Trains.zip"""; Flags: runhidden; StatusMsg: "Installing Trains Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_terrains; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Terrains.zip"""; Flags: runhidden; StatusMsg: "Installing Terrains Content Pack..."
 ;DirectX
 Filename: "{tmp}\dxwebsetup.exe"; WorkingDir: "{tmp}"; Parameters: "/Q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing DirectX..."
 ;VS redist
