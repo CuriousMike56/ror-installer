@@ -91,7 +91,9 @@ Source: "Dependencies\DirectX\*"; DestDir: "{tmp}"; Flags: nocompression createa
 ; VS redist
 Source: "Dependencies\VSRedist\*"; DestDir: "{tmp}"; Flags: nocompression createallsubdirs recursesubdirs deleteafterinstall overwritereadonly ignoreversion uninsremovereadonly
 ; Unzip tool
-Source: "Dependencies\7za.exe"; DestDir: "{tmp}"; Flags: nocompression createallsubdirs recursesubdirs deleteafterinstall overwritereadonly ignoreversion uninsremovereadonly
+Source: "Dependencies\7za.exe"; DestDir: "{tmp}"; Flags: ignoreversion deleteafterinstall
+;Batch file to rename config folder
+Source: "Dependencies\RenameConfigFolder.bat"; DestDir: "{tmp}"; Flags: ignoreversion deleteafterinstall
 ; Content packs, optional
 Source: "{tmp}\ContentPack_HeavyEquipment.zip"; DestDir: "{tmp}"; Components: contentpack_trucks; Flags: external deleteafterinstall; ExternalSize: 904536285
 Source: "{tmp}\ContentPack_LightVehicles.zip"; DestDir: "{tmp}"; Components: contentpack_cars; Flags: external deleteafterinstall; ExternalSize: 612010794
@@ -126,6 +128,16 @@ begin
         idpDownloadAfter(wpReady);
 end;
 
+function NextButtonClick(CurPageID: Integer): Boolean;
+begin
+  Result := True;
+  if (CurPageID = wpSelectTasks) and DirExists(ExpandConstant('{userdocs}\Rigs of Rods 0.4')) then
+  begin
+    Result := MsgBox('Setup has detected that `Documents\Rigs of Rods 0.4` exists. Setup will rename the `config` folder to `config.old` to prevent conflicts with previous game versions. ' + 
+    'If you have any extra configuration files (e.g. controller input maps) you will have to move them after installation. Are you sure you want to continue?', mbConfirmation, MB_YESNO) = IDYES;
+  end;
+end;
+
 [Icons]
 ; Start Menu
 Name: "{group}\Rigs of Rods"; Filename: "{app}\RoR.exe"
@@ -146,6 +158,8 @@ Filename: "{tmp}\dxwebsetup.exe"; WorkingDir: "{tmp}"; Parameters: "/Q"; Flags: 
 ;VS redist
 Filename: "{tmp}\vc_redist.x64.exe"; WorkingDir: "{tmp}"; Parameters: "/q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing Visual Studio Redistributable (x64)..."; Check: Is64BitInstallMode
 Filename: "{tmp}\vc_redist.x86.exe"; WorkingDir: "{tmp}"; Parameters: "/q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing Visual Studio Redistributable (x86)..."; Check: not Is64BitInstallMode
+;Batch file to rename config folder
+Filename: "{tmp}\RenameConfigFolder.bat"; WorkingDir: "{tmp}"; Flags: runhidden
 ; "Launch Rigs of Rods" button after install
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
