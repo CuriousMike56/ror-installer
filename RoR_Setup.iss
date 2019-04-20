@@ -134,7 +134,7 @@ begin
   if (CurPageID = wpSelectTasks) and DirExists(ExpandConstant('{userdocs}\Rigs of Rods 0.4')) then
   begin
     Result := MsgBox('Setup has detected that `Documents\Rigs of Rods 0.4` exists. Setup will rename the `config` folder to `config.old` to prevent conflicts with previous game versions. ' + 
-    'If you have any extra configuration files (e.g. controller input maps) you will have to move them after installation. Are you sure you want to continue?', mbConfirmation, MB_YESNO) = IDYES;
+    'If you have any extra configuration files (e.g. controller input maps) you will have to move them after installation. Your installed mods will be unaffected. Are you sure you want to continue?', mbConfirmation, MB_YESNO) = IDYES;
   end;
 end;
 
@@ -147,19 +147,19 @@ Name: "{commondesktop}\Rigs of Rods"; Filename: "{app}\RoR.exe"; Tasks: desktopi
 
 [Run]
 ;Content packs
-Filename: "{tmp}\7za.exe"; Components: contentpack_trucks; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_HeavyEquipment.zip"""; Flags: runhidden; StatusMsg: "Installing Trucks & Heavy Equipment Content Pack..."
-Filename: "{tmp}\7za.exe"; Components: contentpack_cars; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_LightVehicles.zip"""; Flags: runhidden; StatusMsg: "Installing Cars & Light Vehicles Content Pack..."
-Filename: "{tmp}\7za.exe"; Components: contentpack_loads; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Loads.zip"""; Flags: runhidden; StatusMsg: "Installing Trailers & Loads Content Pack..."
-Filename: "{tmp}\7za.exe"; Components: contentpack_airsea; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_AirSea.zip"""; Flags: runhidden; StatusMsg: "Installing Air & Sea Content Pack..."
-Filename: "{tmp}\7za.exe"; Components: contentpack_trains; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Trains.zip"""; Flags: runhidden; StatusMsg: "Installing Trains Content Pack..."
-Filename: "{tmp}\7za.exe"; Components: contentpack_terrains; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Terrains.zip"""; Flags: runhidden; StatusMsg: "Installing Terrains Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_trucks; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_HeavyEquipment.zip"""; Flags: runhidden runascurrentuser; StatusMsg: "Installing Trucks & Heavy Equipment Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_cars; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_LightVehicles.zip"""; Flags: runhidden runascurrentuser; StatusMsg: "Installing Cars & Light Vehicles Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_loads; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Loads.zip"""; Flags: runhidden runascurrentuser; StatusMsg: "Installing Trailers & Loads Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_airsea; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_AirSea.zip"""; Flags: runhidden runascurrentuser; StatusMsg: "Installing Air & Sea Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_trains; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Trains.zip"""; Flags: runhidden runascurrentuser; StatusMsg: "Installing Trains Content Pack..."
+Filename: "{tmp}\7za.exe"; Components: contentpack_terrains; Parameters: "x -aos -o""{userdocs}\Rigs of Rods 0.4\mods\"" ""{tmp}\ContentPack_Terrains.zip"""; Flags: runhidden runascurrentuser; StatusMsg: "Installing Terrains Content Pack..."
 ;DirectX
-Filename: "{tmp}\dxwebsetup.exe"; WorkingDir: "{tmp}"; Parameters: "/Q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing DirectX..."
+Filename: "{tmp}\dxwebsetup.exe"; WorkingDir: "{tmp}"; Parameters: "/Q"; Flags: waituntilterminated skipifdoesntexist runascurrentuser; StatusMsg: "Installing DirectX..."
 ;VS redist
-Filename: "{tmp}\vc_redist.x64.exe"; WorkingDir: "{tmp}"; Parameters: "/q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing Visual Studio Redistributable (x64)..."; Check: Is64BitInstallMode
-Filename: "{tmp}\vc_redist.x86.exe"; WorkingDir: "{tmp}"; Parameters: "/q"; Flags: waituntilterminated skipifdoesntexist; StatusMsg: "Installing Visual Studio Redistributable (x86)..."; Check: not Is64BitInstallMode
+Filename: "{tmp}\vc_redist.x64.exe"; WorkingDir: "{tmp}"; Parameters: "/install /passive /norestart"; Flags: waituntilterminated skipifdoesntexist runascurrentuser; StatusMsg: "Installing Visual Studio Redistributable (x64)..."; Check: Is64BitInstallMode
+Filename: "{tmp}\vc_redist.x86.exe"; WorkingDir: "{tmp}"; Parameters: "/install /passive /norestart"; Flags: waituntilterminated skipifdoesntexist runascurrentuser; StatusMsg: "Installing Visual Studio Redistributable (x86)..."; Check: not Is64BitInstallMode
 ;Batch file to rename config folder
-Filename: "{tmp}\RenameConfigFolder.bat"; WorkingDir: "{tmp}"; Flags: runhidden
+Filename: "{tmp}\RenameConfigFolder.bat"; WorkingDir: "{tmp}"; Flags: runhidden runascurrentuser
 ; "Launch Rigs of Rods" button after install
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
