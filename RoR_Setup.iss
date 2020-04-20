@@ -103,12 +103,12 @@ Name: contentpack_terrains; Description: Content Pack - Terrains; Types: custom 
 [Code]
 procedure InitializeWizard();
 begin
-        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-trucks-heavy-equipment.490/download', ExpandConstant('{tmp}\ContentPack_HeavyEquipment.zip'), 'contentpack_trucks');
-        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-cars-light-vehicles.491/download', ExpandConstant('{tmp}\ContentPack_LightVehicles.zip'), 'contentpack_cars');
-        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-trailers-loads.492/download', ExpandConstant('{tmp}\ContentPack_Loads.zip'), 'contentpack_loads');
-        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-air-sea.495/download', ExpandConstant('{tmp}\ContentPack_AirSea.zip'), 'contentpack_airsea');
-        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-trains.494/download', ExpandConstant('{tmp}\ContentPack_Trains.zip'), 'contentpack_trains');
-        idpAddFileComp('http://forum.rigsofrods.org/resources/content-pack-terrains.496/download', ExpandConstant('{tmp}\ContentPack_Terrains.zip'), 'contentpack_terrains');
+        idpAddFileComp('https://github.com/CuriousMike56/ContentPacks/releases/download/2020.01/ContentPack_HeavyEquipment.zip', ExpandConstant('{tmp}\ContentPack_HeavyEquipment.zip'), 'contentpack_trucks');
+        idpAddFileComp('https://github.com/CuriousMike56/ContentPacks/releases/download/2020.01/ContentPack_LightVehicles.zip', ExpandConstant('{tmp}\ContentPack_LightVehicles.zip'), 'contentpack_cars');
+        idpAddFileComp('https://github.com/CuriousMike56/ContentPacks/releases/download/2020.01/ContentPack_Loads.zip', ExpandConstant('{tmp}\ContentPack_Loads.zip'), 'contentpack_loads');
+        idpAddFileComp('https://github.com/CuriousMike56/ContentPacks/releases/download/2020.01/ContentPack_AirSea.zip', ExpandConstant('{tmp}\ContentPack_AirSea.zip'), 'contentpack_airsea');
+        idpAddFileComp('https://github.com/CuriousMike56/ContentPacks/releases/download/2020.01/ContentPack_Trains.zip', ExpandConstant('{tmp}\ContentPack_Trains.zip'), 'contentpack_trains');
+        idpAddFileComp('https://github.com/CuriousMike56/ContentPacks/releases/download/2020.01/ContentPack_Terrains.zip', ExpandConstant('{tmp}\ContentPack_Terrains.zip'), 'contentpack_terrains');
        
         idpDownloadAfter(wpReady);
 end;
